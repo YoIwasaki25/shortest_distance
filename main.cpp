@@ -1,5 +1,6 @@
 #include<iostream>
-#include "fast-cpp-csv-parser/csv.h"
+#include<fstream>
+#include<sstream>
 #include<string.h>
 #include<string>
 #include<vector>
@@ -11,32 +12,38 @@ using namespace std;
 
 struct IC{
     string name; //インター名
-    double dfm;    //三郷からの距離[km]
-    double dfy;    //谷和原からの距離[km]
+    string dfm;    //三郷からの距離[km]
+    string dfy;    //谷和原からの距離[km]
 };
 
 void input_file(){
-    int index;                  
+    string index;                  
     string ic_name;             
-    double dist_from_misato;    
-    double dist_from_yawara;
+    string dist_from_misato;    
+    string dist_from_yawara;
     int i = 0;
     string input_str;
 
-    struct IC ic[30];
+    struct IC ic[40]; //読み込みファイルの　index+1 以上のサイズを持つこと
     struct IC* p;
 
     p = ic;
 
-    io::CSVReader<COLUMNS> in("testfile.csv");
+    string line;
 
-    while(in.read_row(index,ic_name,dist_from_misato,dist_from_yawara)){  
-        ic[i].name = ic_name;
-        ic[i].dfm = dist_from_misato;
-        ic[i].dfy = dist_from_yawara;
-        i++;
+    ifstream myFileStream("testfile.csv");
+    if(!myFileStream.is_open()){
+        cout << "File failed to open" << endl;
     }
-
+    while(getline(myFileStream, line)){
+        stringstream ss(line);
+        getline(ss, index, ',');
+        getline(ss, ic[i].name, ',');
+        getline(ss, ic[i].dfm, ',');
+        getline(ss, ic[i].dfy, ',');
+        cout << ic[i].name << endl;
+    i++;
+    }
     cout << "インターチェンジを入力してください" << endl;
     cin >> input_str;
 
@@ -45,8 +52,8 @@ void input_file(){
             cout << "インターチェンジが見つかりません" << endl;
             break;
         }else if(p->name == input_str){
-            cout << p->dfm << endl;
-            cout << p->dfy << endl;
+            cout << "三郷からの距離:　" << p->dfm << endl;
+            cout << "谷田部からの距離:　" << p->dfy << endl;
             break;        
         }
         p++;
