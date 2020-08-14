@@ -7,6 +7,10 @@
 #include "short_distance.hpp"
 #define CONSUMPTION_TAX 1.1
 
+Distance::Distance(){}
+
+Distance::~Distance(){}
+
 st* Distance::search_ic(std::string args){                  
     int i = 0;
     int num;

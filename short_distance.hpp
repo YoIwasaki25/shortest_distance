@@ -14,8 +14,10 @@ typedef struct IC{
 }st;
 
 class Distance{
-
+private:
 public:
+    Distance();
+    ~Distance();
     double cost(double arg);
     st* search_ic(std::string args);
 };
