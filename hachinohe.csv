@@ -1,0 +1,8 @@
+﻿ルート,ノード名,ノード名,距離,高速名,node1,node2
+1,安代JCT,浄法寺,14.9,hachinohe,1,2
+2,浄法寺IC,一戸IC,11.9,hachinohe,2,3
+3,一戸IC,九戸IC,11.4,hachinohe,3,4
+4,九戸IC,軽米IC,10,hachinohe,4,5
+5,軽米IC,南郷IC,9.6,hachinohe,5,6
+6,南郷IC,八戸JCT,6.5,hachinohe,6,7
+7,八戸JCT,八戸IC,3.8,hachinohe,7,8
